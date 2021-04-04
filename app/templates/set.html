@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="display:flex; flex-direction:column; align-items:center;">
+        <div style="display: flex; margin-top: 10rem; margin-bottom: 3rem; align-items:center;">
+            {% for i in range(4) %}
+                <h2 style="margin-right: 3rem;">{{ question_num["answer"][i] }}</h2>
+            {% endfor %}
+        </div>
+        <div style="display: flex; margin-top: 3rem; align-items:center;padding-left: 4rem;">
+            {% if question_num["answer"][3] != "_" %}
+                <form method ="POST" action="/start">
+                    <input class="btn btn-warning"type="submit" style="width:250px;height:70px;" value="Do you want to play again?" name="play_again">
+                    <h3 class="text-center" style="padding-top: 3rem">You've guess for {{question_num["guess_times"]}} times</h3>
+                    <h2 class="text-center">YOU WIN!</h2>
+                </form>
+            {% else %}
+                <form method ="POST" action="/set">
+                    <input class="btn btn-info" type="submit" style="width:100px;height:100px; margin-right: 2rem;" value="A" name="button">
+                    <input class="btn btn-info" type="submit" style="width:100px;height:100px; margin-right: 2rem;" value="B" name="button">
+                    <input class="btn btn-info" type="submit" style="width:100px;height:100px; margin-right: 2rem;" value="C" name="button">
+                    <input class="btn btn-info" type="submit" style="width:100px;height:100px; margin-right: 2rem;" value="D" name="button">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
